@@ -19,14 +19,14 @@ class ViewController: UIViewController {
     func fetchCovideOverview(
         completionHandler: @escaping (Result<CityCovidOverview, Error>) -> Void
     ) {
-        let url = "https://api.corona-19.kr/korea/?serviceKey=uZwcRk6gpD9QClStr4OMNP2os75JiVeYy" //url
+        let url = "url" //url
         AF.request(url, method: .get)
             .responseData(completionHandler: { response in
                 switch response.result {
                 case let .success(data) :
                     do {
                         let decoder = JSONDecoder()
-                        let result = try decoder.decode(CityCovidOverview.self, from: data) //사용자 정의 구조체
+                        let result = try decoder.decode(Struct.self, from: data) //사용자 정의 구조체
                         completionHandler(.success(result))
                     } catch {
                         completionHandler(.failure(error))
